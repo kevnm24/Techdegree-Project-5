@@ -1,11 +1,14 @@
+// this will fetch data from url
 fetch('https://randomuser.me/api?results=12&nat=us')
   .then(response => response.json())
   .then(data => getUsers(data.results));
 
+// this function creates 12 user cards that will have information about them
 function getUsers(data) {
   let userGallery = ""
   for (let i = 0; i < data.length; i++) {
     userGallery +=
+// interpolation is used to get the data results and chose what we want to show like a picture and then it is inserted into an element
     `
     <div class="card">
         <div class="card-img-container">
@@ -18,9 +21,10 @@ function getUsers(data) {
         </div>
     </div>
     `;
-
+// this line of code will get the div with an id of gallery and insert usergallery as its innerhtml
     document.querySelector('#gallery').innerHTML = userGallery;
 
+// this is used when one of the cards is clicked it will get its index and isert it into the data array to show the appropiate user
     $('.card').on('click', function(){
         let currentIndex = $('.card').index(this);
         modalMarkup(data[currentIndex]);
@@ -28,6 +32,7 @@ function getUsers(data) {
   }
 }
 
+// this function is used to create a modal for when one of the cards is clicked, it will show more information of the user.
 function modalMarkup(info) {
   const dob = info.dob.date;
   dob.split('-')
@@ -48,7 +53,17 @@ function modalMarkup(info) {
                 <p class="modal-text">${info.location.street}, ${info.location.state} ${info.location.postcode}</p>
                 <p class="modal-text">Birthday:${month}/${day}/${year}</p>
             </div>`;
+    modalWindow +=
+            `
+            <div class="modal-btn-container">
+                <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                <button type="button" id="modal-next" class="modal-next btn">Next</button>
+            </div>
+            `
+// this line of code will insert modalWindow into the innerhtml of div element
             document.querySelector('div').innerHTML += modalWindow;
+
+// these lines of code will be used to close modaWindow when x button is clicked
             $('#modal-close-btn').on('click', function(){
               $('.modal-container').remove();
             });

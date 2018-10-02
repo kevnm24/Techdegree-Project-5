@@ -17,7 +17,7 @@ function getUsers(data) {
         <div class="card-info-container">
             <h3 id="name" class="card-name cap">${data[i].name.first} ${data[i].name.last}</h3>
             <p class="card-text">${data[i].email}</p>
-            <p class="card-text cap">${data[i].location.city}, ${data[i].location.state}</p>
+            <p class="card-text cap">${data[i].location.city}</p>
         </div>
     </div>
     `;

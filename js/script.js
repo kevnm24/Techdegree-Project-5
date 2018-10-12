@@ -53,13 +53,6 @@ function modalMarkup(info) {
                 <p class="modal-text">${info.location.street}, ${info.location.state} ${info.location.postcode}</p>
                 <p class="modal-text">Birthday:${month}/${day}/${year}</p>
             </div>`;
-    modalWindow +=
-            `
-            <div class="modal-btn-container">
-                <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
-                <button type="button" id="modal-next" class="modal-next btn">Next</button>
-            </div>
-            `
 // this line of code will insert modalWindow into the innerhtml of div element
             document.querySelector('div').innerHTML += modalWindow;
 
